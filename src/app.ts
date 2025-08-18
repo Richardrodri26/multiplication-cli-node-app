@@ -1,29 +1,15 @@
-import fs from "fs";
-
-let outputMessage: string = '';
-const base = 5;
-
-const headerMessage = `
-=========================
-Tabla del ${base}
-=========================\n
-`
+import { yarg } from "./config/plugins/args.plugin";
 
 
+// console.log(process.argv)
+
+(async () => {
+  await main();
+})();
 
 
-for (let i = 1; i < 11; i++) {
-  outputMessage += `${i} x ${base} = ${i * base}\n`;
+async function main() {
+
+  console.log('yarg :>> ', yarg);
+
 }
-
-outputMessage = headerMessage + outputMessage;
-console.log(outputMessage);
-
-const outputPath = `outputs`;
-
-// grabar en el archivo de salida
-// path: outputs/tabla-5.txt
-fs.mkdirSync(outputPath, { recursive: true });
-const outputFilePath: string = `${outputPath}/tabla-${base}.txt`;
-
-fs.writeFileSync(outputFilePath, outputMessage);

@@ -1,9 +1,11 @@
-import yargs from 'yargs';
+// const yargs = require('yargs');
+// const { hideBin } = require('yargs/helpers');
+
+import yargs from "yargs";
 import { hideBin } from 'yargs/helpers';
 
 
-
-export const yarg = yargs(hideBin(process.argv))
+export const yarg = yargs(hideBin(process.argv) )
   .option('b', {
     alias: 'base',
     type: 'number',
@@ -14,7 +16,7 @@ export const yarg = yargs(hideBin(process.argv))
     alias: 'limit',
     type: 'number',
     default: 10,
-    describe: 'Limit of multiplication table'
+    describe: 'Multiplication table limit'
   })
   .option('s', {
     alias: 'show',
@@ -22,25 +24,22 @@ export const yarg = yargs(hideBin(process.argv))
     default: false,
     describe: 'Show multiplication table'
   })
-  .option('n', {
+  .option('n',{
     alias: 'name',
     type: 'string',
-    default: 'table',
-    describe: 'Name of the file',
+    default: 'multiplication-table',
+    describe: 'File name'
   })
   .option('d', {
     alias: 'destination',
     type: 'string',
-    default: './outputs',
-    describe: 'Destination of the file',
+    default: 'outputs',
+    describe: 'File destination'
   })
   .check(( argv, options ) => {
 
-    if (argv.b < 1) throw new Error('Error: base must be greater than 0');
-    if (argv.l < 1) throw new Error('Error: limit must be greater than 0');
+    if ( argv.b < 1 ) throw 'Error: base must be greater than 0';
 
     return true;
   })
-  .parseSync();
-
-
+  .parseSync()
